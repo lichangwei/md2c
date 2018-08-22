@@ -1,0 +1,45 @@
+{
+  "name": "md2c",
+  "version": "1.0.0",
+  "description": "convert markdown to confluence wiki markup.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts",
+    "build": "tsc src/index.ts -d --outDir dist --lib es2015",
+    "test": "mocha --reporter spec -r ts-node/register test/index.ts",
+    "coverage": "nyc npm test && nyc report --reporter=lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lichangwei/md2c.git"
+  },
+  "keywords": [
+    "markdown",
+    "confluence",
+    "wiki",
+    "convertor"
+  ],
+  "author": "Louis <louis.li@gaiaworks.cn> (https://lichangwei.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lichangwei/md2c/issues"
+  },
+  "homepage": "https://github.com/lichangwei/md2c#readme",
+  "nyc": {
+    "extension": [
+      ".ts"
+    ]
+  },
+  "dependencies": {
+    "clipboardy": "^1.2.3",
+    "marked": "^0.5.0"
+  },
+  "devDependencies": {
+    "@types/marked": "^0.4.0",
+    "@types/mocha": "^5.2.5",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.1"
+  }
+}

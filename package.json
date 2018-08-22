@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "convert markdown to confluence wiki markup.",
   "main": "dist/index.js",
+  "bin": {
+    "md2c": "./bin/md2c.js"
+  },
   "scripts": {
     "start": "ts-node-dev src/index.ts",
     "build": "tsc src/index.ts -d --outDir dist --lib es2015",

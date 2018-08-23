@@ -1,14 +1,13 @@
 {
   "name": "md2c",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "convert markdown to confluence wiki markup.",
   "main": "dist/index.js",
   "bin": {
     "md2c": "./bin/md2c.js"
   },
   "scripts": {
-    "start": "ts-node-dev src/index.ts",
-    "build": "tsc src/index.ts -d --outDir dist --lib es2015",
+    "build": "tsc -p tsconfig.json",
     "demo": "webpack ./demo/index.src.js --output-filename=../demo/index.js --mode=production",
     "test": "mocha --reporter spec -r ts-node/register test/index.ts",
     "deploy": "git subtree push --prefix=demo origin gh-pages",
@@ -46,6 +45,7 @@
     "nyc": "^12.0.2",
     "ts-node": "^7.0.1",
     "typescript": "^3.0.1",
+    "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   },
   "publishConfig": {

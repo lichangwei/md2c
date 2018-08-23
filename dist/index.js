@@ -5,7 +5,7 @@ var marked = require("marked");
  * 转义`Confluence`语法使用的特殊字符
  * @param text 将要转义的字符串
  */
-var escape = function (text) { return (text || '').replace(/(?=[{}|*!\-\[\]])/gm, '\\'); };
+var escape = function (text) { return (text || '').replace(/(?=[{}|*!\[\]])/gm, '\\'); };
 /**
  * 将代码语言转成`Confluence`识别的语言，他识别的语言如下：
  * actionscript3,applescript,bash,c#,cpp,css,coldfusion,delphi,diff,erl,groovy,
@@ -46,3 +46,4 @@ Object.assign(Renderer.prototype, marked.Renderer.prototype, {
 });
 var renderer = new Renderer();
 exports["default"] = (function (markdown) { return marked(markdown, { renderer: renderer }); });
+//# sourceMappingURL=index.js.map

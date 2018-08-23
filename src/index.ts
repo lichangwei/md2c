@@ -4,7 +4,7 @@ import * as marked from 'marked';
  * 转义`Confluence`语法使用的特殊字符
  * @param text 将要转义的字符串
  */
-const escape = (text)=>(text || '').replace(/(?=[{}|*!\-\[\]])/gm, '\\');
+const escape = (text)=>(text || '').replace(/(?=[{}|*!\[\]])/gm, '\\');
 
 /**
  * 将代码语言转成`Confluence`识别的语言，他识别的语言如下：
@@ -58,4 +58,4 @@ Object.assign(Renderer.prototype, marked.Renderer.prototype, {
 
 const renderer = new Renderer();
 
-export default (markdown)=>marked(markdown, {renderer});
+export default (markdown:string)=>marked(markdown, {renderer});

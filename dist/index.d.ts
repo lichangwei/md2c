@@ -1,2 +1,2 @@
-declare const _default: (markdown: any) => string;
+declare const _default: (markdown: string) => string;
 export default _default;

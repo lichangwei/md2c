@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-flow: column;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+}
+.convertor{
+    flex: 1;
+}
+
+.convertor,
+.convertor > section{
+    display: flex;
+    flex-flow: column;
+}
+.convertor > section.markdown{
+    flex: 1;
+}
+.convertor > section.markup{
+    flex: 2;
+}
+.convertor > section > textarea{
+    flex: 1;
+}
+
+textarea{
+    resize: none;
+    width: 100%;
+    border: 1px solid #666;
+}
+@media screen and (min-width: 600px) {
+    .convertor{
+        flex-flow: row wrap;
+    }
+    .convertor > h2{
+        width: 100%;
+    }
+    .convertor > section.markup{
+        flex: 1;
+        margin-left: 20px;
+    }
+}

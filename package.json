@@ -11,6 +11,7 @@
     "build": "tsc src/index.ts -d --outDir dist --lib es2015",
     "demo": "webpack ./demo/index.src.js --output-filename=../demo/index.js --mode=production",
     "test": "mocha --reporter spec -r ts-node/register test/index.ts",
+    "deploy": "git subtree push --prefix=demo origin gh-pages",
     "coverage": "nyc npm test && nyc report --reporter=lcov"
   },
   "repository": {

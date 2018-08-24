@@ -24,13 +24,13 @@ describe('convert', () => {
     });
     it('代码', () => {
         let code = '```json\n{\n  "result": true\n}\n```';
-        let mark = '{code:language=js|linenumbers=true|collapse=true}\n{\n  "result": true\n}\n{code}\n';
+        let mark = '{code:language=js|linenumbers=true|collapse=false}\n{\n  "result": true\n}\n{code}\n';
         assert.equal(md2c(code), mark);
         code = '```bash\nnpm install\n```';
-        mark = '{code:language=bash|linenumbers=true|collapse=true}\nnpm install\n{code}\n'
+        mark = '{code:language=bash|linenumbers=true|collapse=false}\nnpm install\n{code}\n'
         assert.equal(md2c(code), mark);
 
-        assert.equal(md2c('`Get /api/user/${id}`'), '{{Get /api/user/$\\\{id\\\}}}\n');
+        assert.equal(md2c('`Get /api/user/${id}`'), ' {{Get /api/user/$\\\{id\\\}}} \n');
     });
     it('链接', () => {
         let code = '[Markdown Guide](https://www.markdownguide.org/)';

@@ -28,27 +28,28 @@ const languages = {
 function Renderer(){}
 Object.assign(Renderer.prototype, marked.Renderer.prototype, {
     hr: ()=>'----\n',
-    em: (text)=>`_${escape(text)}_`,
-    del: (text)=>`-${escape(text)}-`,
-    strong: (text)=>`*${escape(text)}*`,
+    em: (text)=>`_${text}_`,
+    del: (text)=>`-${text}-`,
+    strong: (text)=>`*${text}*`,
 
-    text: (text)=>escape(text),
-    link: (href, title, text)=>text ? `[${escape(text)}|${href}]` : `[${href}]`,
-    image: (href, title, alt)=>`!${href}|title=${escape(title)},alt=${escape(alt)}!`,
+    text: (text)=>text,
+    link: (href, title, text)=>text ? `[${text}|${href}]` : `[${href}]`,
+    image: (href, title, alt)=>`!${href}|title=${title || ''},alt=${alt}!`,
 
-    code: (code, lang)=>`{code:language=${languages[lang]||lang}|linenumbers=true|collapse=true}\n${code}\n{code}\n`,
-    codespan: (code)=>`{{${escape(code)}}}`,
+    code: (code, lang)=>`{code:language=${languages[lang]||lang}|linenumbers=true|collapse=false}\n${code}\n{code}\n`,
+    // 一对大括号两边要有空格，防止用户没有添加空格导致不能识别
+    codespan: (code)=>` {{${escape(code)}}} `,
 
     list: (text, ordered)=>text.trim().replace(/^|(?<=\n+)/g, ordered ? '# ' : '* ') + '\n\n',
-    listitem: (text)=>`${escape(text)}\n`,
+    listitem: (text)=>`${text}\n`,
 
     table: (header, body)=>`${header}${body}`,
     tablerow: (cells)=>`${cells}|\n`,
-    tablecell: (cell, options)=>options.header ? `||${escape(cell)}` : `|${escape(cell)}`,
+    tablecell: (cell, options)=>options.header ? `||${cell}` : `|${cell}`,
 
-    heading: (text, depth)=>`h${depth}. ${escape(text)}\n`,
+    heading: (text, depth)=>`h${depth}. ${text}\n`,
     paragraph: (text)=>`${text}\n`,
-    blockquote: (quote)=>`{quote}${escape(quote)}{quote}\n`,
+    blockquote: (quote)=>`{quote}${quote}{quote}\n`,
 
     // 使用`marked`自带渲染器的方法
     // br: ()=>'\n',

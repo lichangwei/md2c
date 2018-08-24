@@ -27,22 +27,23 @@ var languages = {
 function Renderer() { }
 Object.assign(Renderer.prototype, marked.Renderer.prototype, {
     hr: function () { return '----\n'; },
-    em: function (text) { return "_" + escape(text) + "_"; },
-    del: function (text) { return "-" + escape(text) + "-"; },
-    strong: function (text) { return "*" + escape(text) + "*"; },
-    text: function (text) { return escape(text); },
-    link: function (href, title, text) { return text ? "[" + escape(text) + "|" + href + "]" : "[" + href + "]"; },
-    image: function (href, title, alt) { return "!" + href + "|title=" + escape(title) + ",alt=" + escape(alt) + "!"; },
-    code: function (code, lang) { return "{code:language=" + (languages[lang] || lang) + "|linenumbers=true|collapse=true}\n" + code + "\n{code}\n"; },
-    codespan: function (code) { return "{{" + escape(code) + "}}"; },
+    em: function (text) { return "_" + text + "_"; },
+    del: function (text) { return "-" + text + "-"; },
+    strong: function (text) { return "*" + text + "*"; },
+    text: function (text) { return text; },
+    link: function (href, title, text) { return text ? "[" + text + "|" + href + "]" : "[" + href + "]"; },
+    image: function (href, title, alt) { return "!" + href + "|title=" + (title || '') + ",alt=" + alt + "!"; },
+    code: function (code, lang) { return "{code:language=" + (languages[lang] || lang) + "|linenumbers=true|collapse=false}\n" + code + "\n{code}\n"; },
+    // 一对大括号两边要有空格，防止用户没有添加空格导致不能识别
+    codespan: function (code) { return " {{" + escape(code) + "}} "; },
     list: function (text, ordered) { return text.trim().replace(/^|(?<=\n+)/g, ordered ? '# ' : '* ') + '\n\n'; },
-    listitem: function (text) { return escape(text) + "\n"; },
+    listitem: function (text) { return text + "\n"; },
     table: function (header, body) { return "" + header + body; },
     tablerow: function (cells) { return cells + "|\n"; },
-    tablecell: function (cell, options) { return options.header ? "||" + escape(cell) : "|" + escape(cell); },
-    heading: function (text, depth) { return "h" + depth + ". " + escape(text) + "\n"; },
+    tablecell: function (cell, options) { return options.header ? "||" + cell : "|" + cell; },
+    heading: function (text, depth) { return "h" + depth + ". " + text + "\n"; },
     paragraph: function (text) { return text + "\n"; },
-    blockquote: function (quote) { return "{quote}" + escape(quote) + "{quote}\n"; }
+    blockquote: function (quote) { return "{quote}" + quote + "{quote}\n"; }
 });
 var renderer = new Renderer();
 exports["default"] = (function (markdown) { return marked(markdown, { renderer: renderer }); });

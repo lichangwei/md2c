@@ -1,0 +1,6 @@
+src
+test
+demo
+
+tsconfig.json
+dist/index.js.map
